@@ -1,3 +1,1 @@
-export type Booking = {
-  id: string
-}
+export type BookingList = any

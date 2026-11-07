@@ -1,6 +1,6 @@
 import { bookingColumns } from './columns'
 import { DataTable } from '#/components/data-table/index'
-import type { Booking } from '#/types/bookings.ts'
+import type { BookingList } from '#/types/bookings.ts'
 
 import {
   InputGroup,
@@ -12,7 +12,7 @@ import { SearchIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Select, SelectTrigger, SelectValue } from '#/components/ui/select.tsx'
 
-export function BookingTable({ data }: { data: Booking[] }) {
+export function BookingTable({ data }: { data: BookingList }) {
   const formatters: ReactNode = (
     <div className="flex items-center justify-start gap-4">
       <InputGroup className="max-w-48">

@@ -20,12 +20,14 @@ import { Route as DashboardMeBillingRouteImport } from './routes/dashboard/me/bi
 import { Route as DashboardMeProfileRouteImport } from './routes/dashboard/me/profile'
 import { Route as DashboardoperationsAnalyticsIndexRouteImport } from './routes/dashboard/(operations)/analytics/index'
 import { Route as DashboardoperationsBookingsIndexRouteImport } from './routes/dashboard/(operations)/bookings/index'
+import { Route as DashboardoperationsBookingsBookingIdRouteImport } from './routes/dashboard/(operations)/bookings/$bookingId'
 import { Route as DashboardoperationsDispatchersIndexRouteImport } from './routes/dashboard/(operations)/dispatchers/index'
 import { Route as DashboardoperationsFinanceIndexRouteImport } from './routes/dashboard/(operations)/finance/index'
 import { Route as DashboardoperationsLivemapIndexRouteImport } from './routes/dashboard/(operations)/livemap/index'
 import { Route as DashboardoperationsReviewsIndexRouteImport } from './routes/dashboard/(operations)/reviews/index'
 import { Route as DashboardoperationsUsersIndexRouteImport } from './routes/dashboard/(operations)/users/index'
 import { Route as DashboardFleetDriversIndexRouteImport } from './routes/dashboard/fleet/drivers/index'
+import { Route as DashboardFleetDriversDriverIdRouteImport } from './routes/dashboard/fleet/drivers/$driverId'
 import { Route as DashboardFleetPricingsIndexRouteImport } from './routes/dashboard/fleet/pricings/index'
 import { Route as DashboardFleetSettingsIndexRouteImport } from './routes/dashboard/fleet/settings/index'
 
@@ -86,6 +88,12 @@ const DashboardoperationsBookingsIndexRoute =
     path: '/bookings/',
     getParentRoute: () => DashboardRouteRoute,
   } as any)
+const DashboardoperationsBookingsBookingIdRoute =
+  DashboardoperationsBookingsBookingIdRouteImport.update({
+    id: '/(operations)/bookings/$bookingId',
+    path: '/bookings/$bookingId',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const DashboardoperationsDispatchersIndexRoute =
   DashboardoperationsDispatchersIndexRouteImport.update({
     id: '/(operations)/dispatchers/',
@@ -122,6 +130,12 @@ const DashboardFleetDriversIndexRoute =
     path: '/fleet/drivers/',
     getParentRoute: () => DashboardRouteRoute,
   } as any)
+const DashboardFleetDriversDriverIdRoute =
+  DashboardFleetDriversDriverIdRouteImport.update({
+    id: '/fleet/drivers/$driverId',
+    path: '/fleet/drivers/$driverId',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const DashboardFleetPricingsIndexRoute =
   DashboardFleetPricingsIndexRouteImport.update({
     id: '/fleet/pricings/',
@@ -145,6 +159,8 @@ export interface FileRoutesByFullPath {
   '/dashboard/me/billing': typeof DashboardMeBillingRoute
   '/dashboard/me/profile': typeof DashboardMeProfileRoute
   '/dashboard/fleet/': typeof DashboardFleetIndexRoute
+  '/dashboard/bookings/$bookingId': typeof DashboardoperationsBookingsBookingIdRoute
+  '/dashboard/fleet/drivers/$driverId': typeof DashboardFleetDriversDriverIdRoute
   '/dashboard/analytics/': typeof DashboardoperationsAnalyticsIndexRoute
   '/dashboard/bookings/': typeof DashboardoperationsBookingsIndexRoute
   '/dashboard/dispatchers/': typeof DashboardoperationsDispatchersIndexRoute
@@ -165,6 +181,8 @@ export interface FileRoutesByTo {
   '/dashboard/me/billing': typeof DashboardMeBillingRoute
   '/dashboard/me/profile': typeof DashboardMeProfileRoute
   '/dashboard/fleet': typeof DashboardFleetIndexRoute
+  '/dashboard/bookings/$bookingId': typeof DashboardoperationsBookingsBookingIdRoute
+  '/dashboard/fleet/drivers/$driverId': typeof DashboardFleetDriversDriverIdRoute
   '/dashboard/analytics': typeof DashboardoperationsAnalyticsIndexRoute
   '/dashboard/bookings': typeof DashboardoperationsBookingsIndexRoute
   '/dashboard/dispatchers': typeof DashboardoperationsDispatchersIndexRoute
@@ -187,6 +205,8 @@ export interface FileRoutesById {
   '/dashboard/me/billing': typeof DashboardMeBillingRoute
   '/dashboard/me/profile': typeof DashboardMeProfileRoute
   '/dashboard/fleet/': typeof DashboardFleetIndexRoute
+  '/dashboard/(operations)/bookings/$bookingId': typeof DashboardoperationsBookingsBookingIdRoute
+  '/dashboard/fleet/drivers/$driverId': typeof DashboardFleetDriversDriverIdRoute
   '/dashboard/(operations)/analytics/': typeof DashboardoperationsAnalyticsIndexRoute
   '/dashboard/(operations)/bookings/': typeof DashboardoperationsBookingsIndexRoute
   '/dashboard/(operations)/dispatchers/': typeof DashboardoperationsDispatchersIndexRoute
@@ -210,6 +230,8 @@ export interface FileRouteTypes {
     | '/dashboard/me/billing'
     | '/dashboard/me/profile'
     | '/dashboard/fleet/'
+    | '/dashboard/bookings/$bookingId'
+    | '/dashboard/fleet/drivers/$driverId'
     | '/dashboard/analytics/'
     | '/dashboard/bookings/'
     | '/dashboard/dispatchers/'
@@ -230,6 +252,8 @@ export interface FileRouteTypes {
     | '/dashboard/me/billing'
     | '/dashboard/me/profile'
     | '/dashboard/fleet'
+    | '/dashboard/bookings/$bookingId'
+    | '/dashboard/fleet/drivers/$driverId'
     | '/dashboard/analytics'
     | '/dashboard/bookings'
     | '/dashboard/dispatchers'
@@ -251,6 +275,8 @@ export interface FileRouteTypes {
     | '/dashboard/me/billing'
     | '/dashboard/me/profile'
     | '/dashboard/fleet/'
+    | '/dashboard/(operations)/bookings/$bookingId'
+    | '/dashboard/fleet/drivers/$driverId'
     | '/dashboard/(operations)/analytics/'
     | '/dashboard/(operations)/bookings/'
     | '/dashboard/(operations)/dispatchers/'
@@ -349,6 +375,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardoperationsBookingsIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/dashboard/(operations)/bookings/$bookingId': {
+      id: '/dashboard/(operations)/bookings/$bookingId'
+      path: '/bookings/$bookingId'
+      fullPath: '/dashboard/bookings/$bookingId'
+      preLoaderRoute: typeof DashboardoperationsBookingsBookingIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/dashboard/(operations)/dispatchers/': {
       id: '/dashboard/(operations)/dispatchers/'
       path: '/dispatchers'
@@ -391,6 +424,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardFleetDriversIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/dashboard/fleet/drivers/$driverId': {
+      id: '/dashboard/fleet/drivers/$driverId'
+      path: '/fleet/drivers/$driverId'
+      fullPath: '/dashboard/fleet/drivers/$driverId'
+      preLoaderRoute: typeof DashboardFleetDriversDriverIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/dashboard/fleet/pricings/': {
       id: '/dashboard/fleet/pricings/'
       path: '/fleet/pricings'
@@ -414,6 +454,8 @@ interface DashboardRouteRouteChildren {
   DashboardMeBillingRoute: typeof DashboardMeBillingRoute
   DashboardMeProfileRoute: typeof DashboardMeProfileRoute
   DashboardFleetIndexRoute: typeof DashboardFleetIndexRoute
+  DashboardoperationsBookingsBookingIdRoute: typeof DashboardoperationsBookingsBookingIdRoute
+  DashboardFleetDriversDriverIdRoute: typeof DashboardFleetDriversDriverIdRoute
   DashboardoperationsAnalyticsIndexRoute: typeof DashboardoperationsAnalyticsIndexRoute
   DashboardoperationsBookingsIndexRoute: typeof DashboardoperationsBookingsIndexRoute
   DashboardoperationsDispatchersIndexRoute: typeof DashboardoperationsDispatchersIndexRoute
@@ -432,6 +474,9 @@ const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardMeBillingRoute: DashboardMeBillingRoute,
   DashboardMeProfileRoute: DashboardMeProfileRoute,
   DashboardFleetIndexRoute: DashboardFleetIndexRoute,
+  DashboardoperationsBookingsBookingIdRoute:
+    DashboardoperationsBookingsBookingIdRoute,
+  DashboardFleetDriversDriverIdRoute: DashboardFleetDriversDriverIdRoute,
   DashboardoperationsAnalyticsIndexRoute:
     DashboardoperationsAnalyticsIndexRoute,
   DashboardoperationsBookingsIndexRoute: DashboardoperationsBookingsIndexRoute,

@@ -1,19 +1,22 @@
-import { BookingTable } from '#/components/dashboard/bookings/table.tsx'
-import { Button } from '#/components/ui/button.tsx'
-import { createFileRoute } from '@tanstack/react-router'
 import { BookPlus } from 'lucide-react'
+import { Button } from '#/components/ui/button.tsx'
+
+import { createFileRoute } from '@tanstack/react-router'
+import { BookingTable } from '#/components/dashboard/bookings/table.tsx'
+import { bookingsQueryOptions } from '#/features/functions/fetchBookings.ts'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 export const Route = createFileRoute('/dashboard/(operations)/bookings/')({
   component: BookingsPage,
+
+  loader: async ({ context }) => {
+    await context.queryClient.query(bookingsQueryOptions)
+  },
 })
 
-const data = [
-  {
-    id: '1',
-  },
-]
-
 function BookingsPage() {
+  const { data } = useSuspenseQuery(bookingsQueryOptions)
+
   return (
     <div>
       <section

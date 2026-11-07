@@ -42,7 +42,10 @@ export function DataTable<TData extends RowData>({
           {table.getHeaderGroups().map((headergrp) => (
             <TableRow key={headergrp.id}>
               {headergrp.headers.map((header) => (
-                <TableHead id={header.id} className="text-muted-foreground">
+                <TableHead
+                  key={header.id}
+                  className="text-muted-foreground px-4 py-3.5"
+                >
                   {header.isPlaceholder ? null : <FlexRender header={header} />}
                 </TableHead>
               ))}
@@ -54,7 +57,7 @@ export function DataTable<TData extends RowData>({
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getAllCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="px-4 py-3.5">
                     <table.FlexRender cell={cell} />
                   </TableCell>
                 ))}
@@ -68,7 +71,7 @@ export function DataTable<TData extends RowData>({
             </TableRow>
           )}
         </TableBody>
-        <TableFooter>
+        <TableFooter className="w-full">
           <DataTablePagination table={table} />
         </TableFooter>
       </Table>
